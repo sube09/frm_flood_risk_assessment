@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BWM Survey</title>
+    <style>
+            /* 🌟 General Page Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        /* Header Wrapper */
+        .header-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background: linear-gradient(to right, #004d99, #007acc, #00aaff);
+            padding: 25px 0;
+        }
+
+        /* Header Box with Multiple Layers */
+        .header-box {
+            background: #ffffff;
+            padding: 15px 40px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            width: 80%;
+            position: relative;
+            border-top: 5px solid #004d99;
+        }
+
+        /* Main Title */
+        .header-title {
+            font-size: 30px;
+            font-weight: bold;
+            color: #004d99;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-container {
+            max-width: 100%; /* Restrict width to 90% of the page */
+            margin: 0 auto; /* Center the box */
+            background-color: #eef5ff;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            overflow-wrap: break-word; /* Ensure long words do not break the layout */
+        }
+
+        h2 {
+            text-align: center;
+            color: #0056b3;
+        }
+
+        /* 🌟 Section Styling */
+        .section {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* 🌟 Input and Button Styling */
+        select, button, input[type="range"], input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* 🌟 Hidden Elements */
+        .hidden {
+            display: none;
+        }
+
+        /* 🌟 Likert Scale Design */
+        .likert-scale {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #80deea;
+            color: #004d40;
+        }
+
+        .likert-scale span {
+            text-align: center;
+            width: 10%;
+        }
+
+        /* 🌟 Radio Button Styling */
+        .radio-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .radio-container span {
+            text-align: center;
+            border-right: 1px solid #ddd;
+            padding: 5px;
+        }
+
+        .radio-container .radio-group {
+            flex: 1;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-right: 1px solid #ddd;
+            padding: 5px;
+        }
+
+        .radio-container input[type="radio"] {
+            margin: 0 8px;
+        }
+
+        /* 🌟 Text Emphasis */
+        .bold {
+            font-weight: bold;
+        }
+
+        .highlighted-heading {
+            background-color: #d9e3f0;
+            font-family: 'Arial Black', Gadget, sans-serif;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* 🌟 Table & Alignment */
+        .most-important {
+            width: 20%;
+        }
+
+        .comparison-scale {
+            width: 50%;
+        }
+
+        .remaining-category {
+            width: 20%;
+            text-align: right;
+        }
+
+        .selected-value {
+            width: 10%;
+            text-align: center;
+            padding: 5px;
+        }
+
+        /* 🌟 Infographic Section */
+        .infographic-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            gap: 15px;
+            padding: 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        
+        .category-column {
+            flex: 1;
+            max-width: 19%;
+            background-color: #e6f7ff;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 350px;
+        }
+
+        .category-title {
+            background-color: #004d99;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            width: 100%;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            word-wrap: break-word;
+            white-space: normal;
+            font-size: 18px;
+        }
+
+        .criteria-box {
+            background-color: #b3e0ff;
+            color: #004d99;
+            padding: 10px;
+            margin-top: 8px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            width: 85%; /* Ensuring all criteria boxes have the same width */
+            word-wrap: break-word;
+            white-space: normal;
+            font-size: 14px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 🌟 Header Styling */
+        .header {
+            background: linear-gradient(to right, #2a5298, #1e3c72); /* Smooth Blue Gradient */
+            color: #ffffff; /* Clean White Text */
+            padding: 16px; /* Increased Padding for a Balanced Look */
+            font-size: 24px; /* Slightly Larger Font for Readability */
+            font-weight: bold; /* Bold for Emphasis */
+            text-align: center;
+            border-radius: 10px; /* Smooth Rounded Corners */
+            margin-bottom: 24px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Soft Shadow for Depth */
+            letter-spacing: 1px; /* Slight Spacing for Elegance */
+        }
+
+        /* 🌟 Enhanced Information Section */
+        
+
+        /* Title Styling */
+        .info-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #003366;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        /* Subheading Styling */
+        .info-subtitle {
+            font-size: 20px;
+            color: #0056b3;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Text Styling */
+        .info-text {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.6;
+            max-width: 95%;
+            margin: auto;
+        }
+
+        /* Highlighted Text */
+        .highlight {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        /* Icons */
+        .icon {
+            font-size: 40px;
+            color: #0056b3;
+            margin-bottom: 10px;
+        }
+
+        /* Steps Section */
+        .steps-section {
+            max-width: 80%;
+            margin: auto;
+            text-align: left;
+            padding: 10px;
+        }
+
+        /* Steps Formatting */
+        .step {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        /* Steps Container */
+        .steps-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        /* Individual Step Box */
+        .step-box {
+            width: 30%;
+            min-width: 250px;
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .step-box:hover {
+            transform: scale(1.05);
+        }
+
+        .bullet-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .bullet {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Table style */
+        .highlighted-heading-table {
+            background-color: #adeeec;
+            color: #004d99;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .styled-table {
+            width: 48%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 12px;
+            text-align: left;
+        }
+
+        .styled-table thead tr {
+            background-color: #65b7d2;
+            color: white;
+            text-align: left;
+        }
+
+        .styled-table th, .styled-table td {
+            padding: 12px 15px;
+        }
+
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .styled-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        .styled-table tbody tr:last-of-type {
+            border-bottom: 2px solid #65b7d2;
+        }
+
+        #importantCategory {
+            background-color: #b0e57c; /* Pastel Green */
+        }
+ 
+        #unimportantCategory {
+            background-color: #ffb3b3; /* Pastel Red */
+        }
+
+        .styled-table tbody tr.active-row {
+            font-weight: bold;
+            color: #65b7d2;
+        }
+
+        .table-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 2%;
+            margin-bottom: 20px;
+        }
+
+        /* 🌟 Responsive Styling */
+        @media (max-width: 1024px) {
+            .infographic-container {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+            }
+            .category-column {
+                width: 24%;
+                min-width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .infographic-container {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .category-column {
+                width: 45%;
+                min-width: 220px;
+                margin-bottom: 12px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header-wrapper">
+        <div class="header-box">
+            <div class="header-title"> Flood Risk Assessment Survey</div>
+        </div>
+    </div>
+
+    <!-- New Start Page: User Information -->
+    <div id="startPage" class="section">
+        <h3>Participant Information</h3>
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        
+        <label for="position">Position:</label>
+        <input type="text" id="position" required>
+        
+        <label for="team">Team:</label>
+
+        <select id="team" required>
+            <option value="" selected disabled>Choose...</option>
+            <option value="Resilience Team">Resilience Team</option>
+            <option value="Capacity Fulfilment">Capacity Fulfilment</option>
+            <option value="Capacity Fulfilment">Flood Risk Team</option>
+            <option value="IO Risk Team">IO Risk Team</option>
+            <option value="Ramp Up">Ramp Up</option>
+            <option value="SA">SA</option>
+            <option value="Squad Lead">Squad Lead</option>
+            <option value="STA">STA</option>
+            <option value="Other">Other</option>
+        </select>
+        <input type="text" id="otherTeam" placeholder="Please specify" style="display:none;">
+
+
+        <button onclick="proceedToIntroduction()">Next</button>
+    </div>
+
+    
+    <!-- New Introduction Page -->
+    <div id="introductionPage" class="section hidden">
+        <h2 class="header">Category & Criteria Overview</h2>
+        
+        <div class="info-container">
+            
+            <p class="info-text">This survey contains <span class="highlight"> two parts</span>, in order to assess the <span class="highlight"> relative importance of</span> :</p>        
+            <!-- Steps Section (Aligned Left) -->
+            <div class="align-items: center;">
+                <p class="step"><span class="highlight">Categories </span>(Part 1)</p>
+        
+                <p class="step"><span class="highlight">Criteria </span>(Part 2)</p>            
+            </div>
+ 
+            <p class="info-text">This survey follows a <span class="highlight"> systematic methodology </span> to derive <span class="highlight"> importance weights </span> of each categories and their respective criteria, ensuring a <span class="highlight"> more effective risk rating process</span>, enabled by <span class="highlight">your expertise</span>.</p>
+            <br>
+            <p class="info-text">Below, all <strong>Criteria</strong> to be assessed in this survey are presented under their 5 respective <strong>Categories</strong>:
+        
+        </div>
+        
+        
+        <div class="infographic-container section hidden">
+
+        <!-- Category: Exposure & Location -->
+        <div class="category-column">
+            <div class="category-title">Exposure & Location</div>
+            <div class="criteria-box">River/sea floodplain (parcel & critical assets)</div>
+            <div class="criteria-box">Surface-water (pluvial) ponding at site</div>
+            <div class="criteria-box">Coastal/tidal surge (if coastal)</div>
+            <div class="criteria-box">Primary site access vulnerability</div>
+            <div class="criteria-box">Recent flood impact near site</div>
+        </div>
+
+        <!-- Category: Business Criticality -->
+        <div class="category-column">
+            <div class="category-title">Business Criticality</div>
+            <div class="criteria-box">Strategic partnerships with suppliers</div>
+            <div class="criteria-box">Degree of information sharing</div>
+            <div class="criteria-box">Coordination in operational decision-making</div>
+            <div class="criteria-box">Line-stop potential</div>
+            <div class="criteria-box">Safety / regulatory classification</div>
+            <div class="criteria-box">Industry Process sensitivity</div>
+        </div>
+
+        <!-- Category: Short-Term Adaptability -->
+        <div class="category-column">
+            <div class="category-title">Short-Term Adaptability</div>
+            <div class="criteria-box">Diversity of logistics modes</div>
+            <div class="criteria-box">Dependence on third-party logistics</div>
+            <div class="criteria-box">Transport capacity redundancy</div>
+            <div class="criteria-box">Backup transport routes</div>
+            <div class="criteria-box">Safety stock</div>
+            <div class="criteria-box">Strategic reserves/stockpiles</div>
+        </div>
+
+        <!-- Category: Long-Term Flexibility -->
+        <div class="category-column">
+            <div class="category-title">Long-Term Flexibility</div>
+            <div class="criteria-box">Warehousing capacity redundancy</div>
+            <div class="criteria-box">Complexity of the warehousing network</div>
+            <div class="criteria-box">Dispersion of the warehousing network</div>
+            <div class="criteria-box">Substitutability of suppliers</div>
+            <div class="criteria-box">Substitutability of logistics facilities</div>
+            <div class="criteria-box">Substitutability of inventory</div>
+            <div class="criteria-box">Substitutability of warehousing</div>
+        </div>
+
+        <!-- Category: Supplier Characteristics -->
+        <div class="category-column">
+            <div class="category-title">Supplier Characteristics</div>
+            <div class="criteria-box">Supplier reliability</div>
+            <div class="criteria-box">Early-warning operating mechanism</div>
+            <div class="criteria-box">Supply chain visibility</div>
+            <div class="criteria-box">Supply chain complexity</div>
+            <div class="criteria-box">Supply concentration (single-point-of-failure risk)</div>
+            <div class="criteria-box">Supplier dependency on JLR</div>
+        </div>
+
+    
+    </div>
+
+        
+        <button onclick="showPage('page1')">Next</button>
+        <button onclick="showPage('startPage')">Back</button>
+                
+    </div>
+
+    <!-- Page 1: Category Selection -->
+    <div id="page1" class="section hidden">
+        <h2 class="header">Category Evaluation </h2>
+
+        <h4 class='highlighted-heading'>Step 1: Most Important & Least Important Category</h4>
+        <label>Select Most Important Category:</label>
+        <select id="importantCategory" required onchange="updateUnimportantCategory()"></select>
+        
+        <label>Select Least Important Category:</label>
+        <select id="unimportantCategory" required disabled onchange="showCategoryComparison()"></select>
+
+        <div id="categoryComparison"></div>
+        
+        <button id="nextBtn1" disabled onclick="proceedToStep2()">Next</button>
+        <button onclick="showPage('introductionPage')">Back</button>
+    </div>
+
+    <!-- Page 2+: criteria Selection Pages -->
+    <div id="criteriaPages" class="hidden"></div>
+
+    
+
+    <!-- Final Review & Submission -->
+    <div id="finalReview" class="section hidden">
+        <h3 class="header">Final Review</h3>
+        <div id="reviewContent"></div>
+        
+    </div>
+
+    <!-- New Comment Page -->
+    <div id="commentPage" class="section hidden">
+        <h3>Additional Comments</h3>
+        <label for="comments">Please provide any additional comments (up to 200 words):</label>
+        <textarea id="comments" rows="4" maxlength="200"></textarea>
+        
+        <button onclick="finalReview()">Next</button>
+        <button onclick="showPage('page1')">Back</button>
+    </div>
+
+    
+    <script>
+        const categories = {
+            "Exposure & Location": [
+                "River/sea floodplain (parcel & critical assets)",
+                "Surface-water (pluvial) ponding at site",
+                "Coastal/tidal surge (if coastal)",
+                "Primary site access vulnerability",
+                "Recent flood impact near site"
+            ],
+            "Business Criticality": [
+                "Strategic partnerships with suppliers",
+                "Degree of information sharing",
+                "Coordination in operational decision-making",
+                "Line-stop potential",
+                "Safety / regulatory classification",
+                "Industry Process sensitivity"
+            ],
+            "Short-Term Adaptability": [
+                "Diversity of logistics modes",
+                "Dependence on third-party logistics",
+                "Transport capacity redundancy",
+                "Backup transport routes",
+                "Safety stock",
+                "Strategic reserves/stockpiles"
+            ],
+            "Long-Term Flexibility": [
+                "Warehousing capacity redundancy",
+                "Complexity of the warehousing network",
+                "Dispersion of the warehousing network",
+                "Substitutability of suppliers",
+                "Substitutability of logistics facilities",
+                "Substitutability of inventory",
+                "Substitutability of warehousing"
+            ],
+            "Supplier Characteristics": [
+                "Supplier reliability",
+                "Early-warning operating mechanism",
+                "Supply chain visibility",
+                "Supply chain complexity",
+                "Supply concentration (single-point-of-failure risk)",
+                "Supplier dependency on JLR"
+            ]
+        };
+   
+    
+        document.getElementById('team').addEventListener('change', function() {
+            const otherTeamInput = document.getElementById('otherTeam');
+            if (this.value === 'Other') {
+                otherTeamInput.style.display = 'block';
+                otherTeamInput.required = true;
+            } else {
+                otherTeamInput.style.display = 'none';
+                otherTeamInput.required = false;
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            populateDropdown("importantCategory", Object.keys(categories));
+        });
+
+        function showPage(pageId) {
+            // Store the current state before navigating away
+            const currentSection = document.querySelector('.section:not(.hidden)');
+            if (currentSection) {
+                if (currentSection.id.startsWith("page_")) {
+                    const category = currentSection.id.split("_")[1];
+                    storecriteriaEvaluation(category);
+                } else if (currentSection.id === "page1") {
+                    storeCategoryEvaluation();
+                } else if (currentSection.id === "startPage") {
+                    storeParticipantInfo();
+                }
+            }
+
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            // Show the selected section
+            document.getElementById(pageId).classList.remove('hidden');
+            
+            // Restore the state if available
+            if (pageId === "startPage") {
+                restoreParticipantInfo();
+            } else if (pageId === "introductionPage") {
+                restoreCategoryEvaluation();
+            } else if (pageId.startsWith("page_")) {
+                const category = pageId.split("_")[1];
+                restorecriteriaEvaluation(category);
+            }
+        }
+
+        const surveyState = {
+            participantInfo: {},
+            categoryEvaluation: {},
+            criteriaEvaluation: {}
+        };
+
+        // Function to store participant information
+        function storeParticipantInfo() {
+            surveyState.participantInfo.name = document.getElementById("name").value;
+            surveyState.participantInfo.position = document.getElementById("position").value;
+            surveyState.participantInfo.team = document.getElementById("team").value;
+        }
+
+        // Function to store category evaluation data
+        function storeCategoryEvaluation() {
+            surveyState.categoryEvaluation.importantCategory = document.getElementById("importantCategory").value;
+            surveyState.categoryEvaluation.unimportantCategory = document.getElementById("unimportantCategory").value;
+            surveyState.categoryEvaluation.comparisonScores = collectComparisonScoresForCategory();
+        }
+
+        // Store and restore criteria evaluation data
+        function storecriteriaEvaluation(category) {
+            if (!surveyState.criteriaEvaluation[category]) {
+                surveyState.criteriaEvaluation[category] = {};
+            }
+            surveyState.criteriaEvaluation[category].importantcriteria = document.getElementById(`importantcriteria_${category}`).value;
+            surveyState.criteriaEvaluation[category].unimportantcriteria = document.getElementById(`unimportantcriteria_${category}`).value;
+            surveyState.criteriaEvaluation[category].comparisonScores = collectComparisonScoresForcriteria(category);
+        }
+
+
+        function restoreParticipantInfo() {
+            if (surveyState.participantInfo) {
+                document.getElementById("name").value = surveyState.participantInfo.name || "";
+                document.getElementById("position").value = surveyState.participantInfo.position || "";
+                document.getElementById("team").value = surveyState.participantInfo.team || "";
+            }
+        }
+
+        function restoreCategoryEvaluation() {
+            if (surveyState.categoryEvaluation) {
+                document.getElementById("importantCategory").value = surveyState.categoryEvaluation.importantCategory || "";
+                document.getElementById("unimportantCategory").value = surveyState.categoryEvaluation.unimportantCategory || "";
+                populateComparisonScoresForCategory(surveyState.categoryEvaluation.comparisonScores);
+            }
+        }
+
+        function restorecriteriaEvaluation(category) {
+            if (surveyState.criteriaEvaluation[category]) {
+                document.getElementById(`importantcriteria_${category}`).value = surveyState.criteriaEvaluation[category].importantcriteria || "";
+                document.getElementById(`unimportantcriteria_${category}`).value = surveyState.criteriaEvaluation[category].unimportantcriteria || "";
+                populateComparisonScoresForcriteria(surveyState.criteriaEvaluation[category].comparisonScores, category);
+            }
+        }
+
+        function collectComparisonScoresForCategory() {
+            const scores = [];
+            // Collect scores for category evaluation
+            // Add your logic here to collect the comparison scores for the category
+            return scores;
+        }
+
+        function collectComparisonScoresForcriteria(category) {
+            const scores = [];
+            // Collect scores for criteria evaluation
+            // Add your logic here to collect the comparison scores for the criteria
+            return scores;
+        }
+
+        function populateComparisonScoresForCategory(scores) {
+            // Populate the comparison scores for category evaluation
+            // Add your logic here to populate the comparison scores for the category
+        }
+
+        function populateComparisonScoresForcriteria(scores, category) {
+            // Populate the comparison scores for criteria evaluation
+            // Add your logic here to populate the comparison scores for the criteria
+        }
+
+        // Adding code for Data Collection here (ABC3)
+        const collectedData = {
+            categories: [],
+            criteria: {}
+        };
+
+        function proceedToIntroduction() {
+            storeParticipantInfo();
+            showPage("introductionPage");
+        }
+
+        function proceedToCategories() {
+            storeCategoryEvaluation();
+            showPage("page1");
+        }
+
+        function proceedToStep2(currentCategory) {
+            // Store the current criteria evaluation before navigating to the next page
+            storecriteriaEvaluation(currentCategory);
+            showPage(`page_${Object.keys(categories)[0]}`); // Show first category page
+        }
+
+        function collectCategoryData() {
+            const importantCategory = document.getElementById("importantCategory").value;
+            const unimportantCategory = document.getElementById("unimportantCategory").value;
+            const comparisonMostImportant = collectComparisonScores(importantCategory, unimportantCategory, true);
+            const comparisonLeastImportant = collectComparisonScores(importantCategory, unimportantCategory, false);
+            
+            collectedData.categories.push({
+                important: importantCategory,
+                unimportant: unimportantCategory,
+                comparisonMostImportant,
+                comparisonLeastImportant
+            });
+        }
+
+        function collectcriteriaData() {
+            Object.keys(categories).forEach(category => {
+                const importantcriteria = document.getElementById(`importantcriteria_${category}`).value;
+                const unimportantcriteria = document.getElementById(`unimportantcriteria_${category}`).value;
+                const comparisonMostImportant = collectComparisonScores(importantcriteria, unimportantcriteria, true, category);
+                const comparisonLeastImportant = collectComparisonScores(importantcriteria, unimportantcriteria, false, category);
+                
+                if (!collectedData.criteria[category]) {
+                    collectedData.criteria[category] = [];
+                }
+                
+                collectedData.criteria[category].push({
+                    important: importantcriteria,
+                    unimportant: unimportantcriteria,
+                    comparisonMostImportant,
+                    comparisonLeastImportant
+                });
+            });
+        }
+
+        function collectComparisonScores(important, unimportant, isMostImportant, category = null) {
+            const comparisons = [];
+            const elements = category ? categories[category] : Object.keys(categories);
+
+            elements.forEach(element => {
+                if (element !== important && element !== unimportant) {
+                    const score = document.querySelector(`input[name="${isMostImportant ? important : element}-${isMostImportant ? element : unimportant}"]:checked`)?.value;
+                    if (score) {
+                        comparisons.push({ element, score });
+                    }
+                }
+            });
+
+            return comparisons;
+        }
+
+        // Added code for Data Collection up to this (ABC3)
+
+        function populateDropdown(elementId, options) {
+            const select = document.getElementById(elementId);
+            select.innerHTML = "<option value='' selected disabled>Choose...</option>";
+            options.forEach(option => {
+                select.innerHTML += `<option value="${option}">${option}</option>`;
+            });
+        }
+
+        function updateUnimportantCategory() {
+            const importantCategory = document.getElementById("importantCategory").value;
+            populateDropdown("unimportantCategory", Object.keys(categories).filter(c => c !== importantCategory));
+            document.getElementById("unimportantCategory").disabled = false;
+        }
+
+        function showCategoryComparison() {
+            const important = document.getElementById("importantCategory").value;
+            const unimportant = document.getElementById("unimportantCategory").value;
+            const comparisonDiv = document.getElementById("categoryComparison");
+
+            // Comparison Header
+            comparisonDiv.innerHTML = "<h4 class='highlighted-heading'>Step 2: Compare your Selected Categories to the Remaining Categories</h4>";
+
+            // 🔹 Added Enhanced Explanatory Text Below the Header
+
+            comparisonDiv.innerHTML += `
+                <div class="comparison-info">
+                    <p class="info-text"> Each selected category from above should be rated for its importance on a scale from 
+                        <strong>1 (Equal Importance)</strong> to <strong>9 (Extremely More Important)</strong> against every remaining category.</p>
+                    <br>
+                    <p class="info-text">
+                        We ask you to do this twice, each time comparing your best and worst selected categories, relative to all remaining categories.
+                    </p>
+                    
+                          
+                </div>
+            `;
+        
+            comparisonDiv.innerHTML += `
+
+                <h5 class="highlighted-heading">🔹 How to Assign Comparative Values?</h5>
+
+                    
+                <div class="likert-scale">
+                    <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                </div>
+                <div class="likert-scale">
+                    <span>Equal Importance</span><span>Slightly More Important</span><span>Moderately More Important</span>
+                    <span>Fairly Strong Importance</span><span>Strong Importance</span><span>Strong Plus Importance</span>
+                    <span>Very Strong Importance</span><span>Very Strong Plus Importance</span><span>Extremely More Important</span>
+                </div>
+                <br>
+                <ul class="info-text">
+                    <li> If you select <strong>"1"</strong>, it means both options are <strong>equally important</strong> (LHS = RHS).
+                    <li> If you select <strong>"9"</strong>, it means the <strong>Right-Hand Side (RHS)</strong> is <strong>extremely more important</strong> than the <strong>Left-Hand Side (LHS)</strong>.
+                    <li> <strong>Intermediate values (2 to 8)</strong> indicate different levels of importance between them.
+                </ul>
+                    
+            `;
+
+            // Step 1: Compare all remaining categories with Most Important
+            comparisonDiv.innerHTML += "<h5 class='highlighted-heading'>🔹 Where does your selected <u>MOST IMPORTANT</u> category sit in terms of importance, relative to the remaining categories?</h5>"
+            comparisonDiv.innerHTML += `<div class='radio-container'><span class='remaining-category bold'>Remaining Category</span><span class='comparison-scale bold'></span><span class='most-important bold' style="background-color: #b0e57c" ><u>MOST IMPORTANT</u></span><span class='selected-value bold'>Selected Value</span></div>`;
+            Object.keys(categories).forEach(cat => {
+                if (cat !== unimportant && cat !== important) {
+                    comparisonDiv.innerHTML += createRadioButtons(cat, important);
+                }
+            });
+
+            
+            // Step 2: Compare all remaining categories with Least Important
+            comparisonDiv.innerHTML += "<h5 class='highlighted-heading'>🔹 Where does the <u>REMAINING CATEGORIES</u> sit in terms of importance, relative to your  selected category (Least Important)?</h5>";
+            comparisonDiv.innerHTML += `<div class='radio-container'><span class='remaining-category bold' style="background-color: #ffb3b3" >Least Important</span><span class='comparison-scale bold'></span><span class='most-important bold'><u>REMAINING CATEGORIES</u></span><span class='selected-value bold'>Selected Value</span></div>`;
+            Object.keys(categories).forEach(cat => {
+                if (cat !== unimportant && cat !== important) {
+                    comparisonDiv.innerHTML += createRadioButtons(unimportant, cat);
+                }
+            });
+
+            document.getElementById("nextBtn1").disabled = false;
+        }
+
+        
+        function createRadioButtons(leftLabel, rightLabel) {
+            return `
+                <div class="radio-container">
+                    <span class="remaining-category">${leftLabel}</span>
+                    <div class="radio-group comparison-scale">
+                        ${Array.from({ length: 9 }, (_, i) => `
+                            <label>
+                                <input type="radio" name="${rightLabel}-${leftLabel}" value="${i + 1}" required onchange="showSelectedValue(this)">
+                                ${i + 1}
+                            </label>
+                        `).join('')}
+                    </div>
+                    <span class="most-important">${rightLabel}</span>
+                    <span class="selected-value"></span>
+                </div>
+            `;
+        }
+
+        function showSelectedValue(radio) {
+            const selectedValueSpan = radio.closest('.radio-container').querySelector('.selected-value');
+            selectedValueSpan.textContent = radio.value;
+            validateAllcriteriaComparisons(); // Validate after each selection
+        }
+
+        function proceedToIntroduction() {
+            document.getElementById("startPage").classList.add("hidden");
+            document.getElementById("introductionPage").classList.remove("hidden");
+        }
+
+        function proceedToCategories() {
+            document.getElementById("introductionPage").classList.add("hidden");
+            document.getElementById("page1").classList.remove("hidden");
+        }
+
+        // Modified proceedToStep2 function
+        function proceedToStep2() {
+            document.getElementById("page1").classList.add("hidden");
+            document.getElementById("criteriaPages").classList.remove("hidden");
+            if (!document.getElementById("criteriaPages").hasChildNodes()) {
+                generatecriteriaPages();
+            }
+            showPage(`page_${Object.keys(categories)[0]}`); // Show first category page
+        }
+
+        
+        // Changing ABC1 here:
+
+        function generatecriteriaPages() {
+            const criteriaPagesDiv = document.getElementById("criteriaPages");
+            criteriaPagesDiv.innerHTML = ""; 
+
+            Object.keys(categories).forEach((category, index) => {
+                let section = document.createElement("div");
+                section.id = `page_${category}`;
+                section.classList.add("section", "hidden");
+
+                section.innerHTML = `
+                    <h2 class="header"> Criteria Evaluation in Category: "<em>${category}</em>" </h2>
+                    <h4 class='highlighted-heading'>Step 1: Most Important & Least Important criteria for ${category}</h4>
+                    <label>Select Most Important Criterion:</label>
+                    <select id="importantcriteria_${category}" style="background-color: #b0e57c" required onchange="updateUnimportantcriteria('${category}')"></select><br>
+                    
+                    <label>Select Least Important Criterion:</label>
+                    <select id="unimportantcriteria_${category}" style="background-color: #ffb3b3" required disabled onchange="showcriteriaComparison('${category}')"></select><br>
+                    
+                    <div id="criteriaComparison_${category}"></div>
+
+                    
+
+                    ${index < Object.keys(categories).length - 1 ? 
+                        `<button onclick="storecriteriaEvaluation('${category}'); showPage('page_${Object.keys(categories)[index + 1]}')" id="nextBtn_${category}" disabled>Next</button>` : 
+                        `<button onclick="finalReview()" id="submitBtn_${category}" disabled>Final Review</button>`}
+                    <button onclick="storecriteriaEvaluation('${category}'); showPage('${index === 0 ? 'page1' : 'page_' + Object.keys(categories)[index - 1]}')">Back</button>
+                `;
+
+                criteriaPagesDiv.appendChild(section);
+                populateDropdown(`importantcriteria_${category}`, categories[category]);
+            });
+        }
+        // ABC1 Up to this.
+
+        function updateUnimportantcriteria(category) {
+            const important = document.getElementById(`importantcriteria_${category}`).value;
+            populateDropdown(`unimportantcriteria_${category}`, categories[category].filter(c => c !== important));
+            document.getElementById(`unimportantcriteria_${category}`).disabled = false;
+        }
+
+        // Changing ABC2 here:
+
+        function showcriteriaComparison(category) {
+            const important = document.getElementById(`importantcriteria_${category}`).value;
+            const unimportant = document.getElementById(`unimportantcriteria_${category}`).value;
+            const comparisonDiv = document.getElementById(`criteriaComparison_${category}`);
+            comparisonDiv.innerHTML = `<h4 class='highlighted-heading'>Compare Remaining criteria</h4>`;
+
+            // Comparison Header
+            comparisonDiv.innerHTML = "<h4 class='highlighted-heading'>Step 2: Compare your Selected criteria to the Remaining criteria</h4>";
+
+            // 🔹 Added Enhanced Explanatory Text Below the Header
+            comparisonDiv.innerHTML += `
+                <div class="comparison-info">
+                    <p class="info-text"> Each criteria should be rated for its importance on a scale from 
+                        <strong>1 (Equal Importance)</strong> to <strong>9 (Extremely More Important)</strong>.</p>
+                    <p class="info-text">
+                        We ask you to do this twice, each time comparing your best and worst selected criteria, relative to all remaining categories.
+                    </p>
+                    <ul class="info-text">
+                        <li> First, compare your <strong> Most Important </strong> selection to each <strong> Remaining criteria </strong>.</li>
+                        <li> Then, compare each <strong> Remaining criteria </strong> relative to your <strong> Least Important </strong> selection.</li>
+                    </ul>
+                </div>
+            `;
+
+            comparisonDiv.innerHTML += `
+                <h5 class="highlighted-heading">🔹 How to Assign Comparative Values?</h5>
+                <div class="likert-scale">
+                    <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                </div>
+                <div class="likert-scale">
+                    <span>Equal Importance</span><span>Slightly More Important</span><span>Moderately More Important</span>
+                    <span>Fairly Strong Importance</span><span>Strong Importance</span><span>Strong Plus Importance</span>
+                    <span>Very Strong Importance</span><span>Very Strong Plus Importance</span><span>Extremely More Important</span>
+                </div>
+                <br>
+                <ul class="info-text">
+                    <li> If you select <strong>"1"</strong>, it means both options are <strong>equally important</strong> (LHS = RHS).</li>
+                    <li> If you select <strong>"9"</strong>, it means the  <strong>Right-Hand Side (RHS)</strong> is <strong>extremely more important</strong> than the <strong>Left-Hand Side (LHS)</strong>.</li>
+                    <li> <strong>Intermediate values (2 to 8)</strong> indicate different levels of importance between them.</li>
+                </ul>
+            `;
+
+            // Step 1: Compare all remaining criteria with Most Important
+            comparisonDiv.innerHTML += "<h5 class='highlighted-heading'>🔹 Where does your selected <u>MOST IMPORTANT</u> criteria sit in terms of importance, relative to the Remaining criteria?</h5>";
+            comparisonDiv.innerHTML += `<div class='radio-container'><span class='remaining-category bold'>Remaining criteria</span><span class='comparison-scale bold'></span><span class='most-important bold' style="background-color: #b0e57c"><u>MOST IMPORTANT</u></span><span class='selected-value'></span></div>`;
+            categories[category].forEach(criterion => {
+                if (criterion !== unimportant && criterion !== important ) {
+                    comparisonDiv.innerHTML += createRadioButtons(criterion, important);
+                }
+            });
+
+            
+            // Step 2: Compare all remaining criteria with Least Important
+            comparisonDiv.innerHTML += "<h5 class='highlighted-heading'> 🔹 Where does the <u>REMAINING criteria</u> sit in terms of importance, relative to your selected criteria (Least Important)?</h5>";
+            comparisonDiv.innerHTML += `<div class='radio-container'><span class='remaining-category bold' style="background-color: #ffb3b3">Least Important</span><span class='comparison-scale bold'></span><span class='most-important bold' ><u>REMAINING criteria</u></span><span class='selected-value'></span></div>`;
+            categories[category].forEach(criterion => {
+                if (criterion !== unimportant && criterion !== important) {
+                    comparisonDiv.innerHTML += createRadioButtons(unimportant, criterion);
+                }
+            });
+
+            const nextBtn = document.getElementById(`nextBtn_${category}`) || document.getElementById(`submitBtn_${category}`);
+            if (nextBtn) {
+                nextBtn.removeAttribute("disabled");
+            } else {
+                console.error(`Element with id "nextBtn_${category}" or "submitBtn_${category}" not found.`);
+            }
+        }
+
+         // ABC2 Up to this.
+        
+        function validateAllcriteriaComparisons() {
+            let allCompleted = true;
+            Object.keys(categories).forEach(category => {
+                const important = document.getElementById(`importantcriteria_${category}`).value;
+                const unimportant = document.getElementById(`unimportantcriteria_${category}`).value;
+                if (!important || !unimportant) {
+                    allCompleted = false;
+                }
+            });
+            return allCompleted;
+        }
+
+        // Adding code related to final review page (ABC4)
+
+        function showLastcriteriaPage() {
+            const lastCategory = Object.keys(collectedData.criteria).pop();
+            showPage(`page_${lastCategory}`);
+        }
+
+        /*
+
+        function generateFinalReview() {
+            collectCategoryData();
+            collectcriteriaData();
+
+            const reviewContent = document.getElementById("reviewContent");
+            reviewContent.innerHTML = "<h3 class='highlighted-heading'>Level I: Category Evaluation</h3>";
+
+            // Category Evaluation
+            collectedData.categories.forEach(categoryData => {
+                reviewContent.innerHTML += `
+                    <div class="table-container">
+                        <table class='styled-table'>
+                            <thead>
+                                <tr><th>Most Important</th><th>Remaining Category</th><th>Score</th></tr>
+                            </thead>
+                            <tbody>
+                                ${generateComparisonRows(categoryData.comparisonMostImportant, categoryData.important, true)}
+                            </tbody>
+                        </table>
+                        <table class='styled-table'>
+                            <thead>
+                                <tr><th>Remaining Category</th><th>Least Important</th><th>Score</th></tr>
+                            </thead>
+                            <tbody>
+                                ${generateComparisonRows(categoryData.comparisonLeastImportant, categoryData.unimportant, false)}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            });
+
+            // criteria Evaluation
+            reviewContent.innerHTML += "<h3 class='highlighted-heading'>Level II: criteria Evaluation in Categories</h3>";
+            Object.keys(collectedData.criteria).forEach(category => {
+                collectedData.criteria[category].forEach(criteriaData => {
+                    reviewContent.innerHTML += `
+                        <h4 class='highlighted-heading-table'>Category: ${category} </h4>
+                        <div class="table-container">
+                            <table class='styled-table'>
+                                <thead>
+                                    <tr><th>Most Important</th><th>Remaining criteria</th><th>Score</th></tr>
+                                </thead>
+                                <tbody>
+                                    ${generateComparisonRows(criteriaData.comparisonMostImportant, criteriaData.important, true)}
+                                </tbody>
+                            </table>
+                            <table class='styled-table'>
+                                <thead>
+                                    <tr><th>Remaining criteria</th><th>Least Important</th><th>Score</th></tr>
+                                </thead>
+                                <tbody>
+                                    ${generateComparisonRows(criteriaData.comparisonLeastImportant, criteriaData.unimportant, false)}
+                                </tbody>
+                            </table>
+                        </div>
+                    `;
+                });
+            });
+
+            reviewContent.innerHTML += `
+                <button onclick="submitSurvey()">Confirm & Submit</button>
+                <button onclick="downloadCSV()">Download CSV</button>
+                <button onclick="showLastcriteriaPage()">Back</button>
+            `;
+        }
+
+        function generateComparisonRows(comparisons, mainLabel, isMostImportant) {
+            return comparisons.map(comp => `
+                <tr>
+                    <td>${mainLabel}</td>
+                    <td>${comp.element}</td>
+                    <td>${comp.score}</td>
+                </tr>
+            `).join('');
+        }
+            */
+        // Added code related to final review page up to this (ABC4)
+
+        function proceedToComments() {
+            document.getElementById("criteriaPages").classList.add("hidden");
+            document.getElementById("commentPage").classList.remove("hidden");
+        }
+
+        // Function to show the final review page
+        function finalReview() {
+        // Clear the previous content
+        const reviewContent = document.getElementById("reviewContent");
+        reviewContent.innerHTML = "<h3 class='highlighted-heading'>Level I: Category Evaluation</h3>";
+
+        // Collect data before generating the review content
+        collectCategoryData();
+        collectcriteriaData();
+
+        // Category Evaluation
+        collectedData.categories.forEach(categoryData => {
+            reviewContent.innerHTML += `
+                <div class="table-container">
+                    <table class='styled-table'>
+                        <thead>
+                            <tr><th>Remaining Category</th><th>Most Important</th><th>Score</th></tr>
+                        </thead>
+                        <tbody>
+                            ${generateComparisonRows(categoryData.comparisonMostImportant, categoryData.important, true)}
+                        </tbody>
+                    </table>
+                    <table class='styled-table'>
+                        <thead>
+                            <tr><th>Least Important</th><th>Remaining Category</th><th>Score</th></tr>
+                        </thead>
+                        <tbody>
+                            ${generateComparisonRows(categoryData.comparisonLeastImportant, categoryData.unimportant, false)}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        });
+
+        // criteria Evaluation
+        reviewContent.innerHTML += "<h3 class='highlighted-heading'>Level II: criteria Evaluation in Categories</h3>";
+        Object.keys(collectedData.criteria).forEach(category => {
+            collectedData.criteria[category].forEach(criteriaData => {
+                reviewContent.innerHTML += `
+                    <h4 class='highlighted-heading-table'>Category: ${category} </h4>
+                    <div class="table-container">
+                        <table class='styled-table'>
+                            <thead>
+                                <tr><th>Remaining criteria</th><th>Most Important</th><th>Score</th></tr>
+                            </thead>
+                            <tbody>
+                                ${generateComparisonRows(criteriaData.comparisonMostImportant, criteriaData.important, true)}
+                            </tbody>
+                        </table>
+                        <table class='styled-table'>
+                            <thead>
+                                <tr><th>Least Important</th><th>Remaining criteria</th><th>Score</th></tr>
+                            </thead>
+                            <tbody>
+                                ${generateComparisonRows(criteriaData.comparisonLeastImportant, criteriaData.unimportant, false)}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            });
+        });
+
+        reviewContent.innerHTML += `
+            <button onclick="submitSurvey()">Submit Results</button>
+            <button onclick="showLastcriteriaPage()">Back</button>
+        `;
+
+        // Show the final review page
+        showPage("finalReview");
+    }
+
+    function generateComparisonRows(comparisons, mainLabel, isMostImportant) {
+        return comparisons.map(comp => `
+            <tr>
+                <td>${comp.element}</td>
+                <td>${mainLabel}</td>
+                <td>${comp.score}</td>
+            </tr>
+        `).join('');
+    }
+
+
+        // Example functions to generate review content (you need to implement these based on your data structure)
+        function generateParticipantInfoReview() {
+            const infoDiv = document.createElement("div");
+            infoDiv.innerHTML = `
+                <h3>Participant Information</h3>
+                <p><strong>Name:</strong> ${surveyState.participantInfo.name}</p>
+                <p><strong>Position:</strong> ${surveyState.participantInfo.position}</p>
+                <p><strong>Team:</strong> ${surveyState.participantInfo.team}</p>
+            `;
+            return infoDiv;
+        }
+
+        function generateCategoryEvaluationReview() {
+            const categoryDiv = document.createElement("div");
+            categoryDiv.innerHTML = `
+                <h3>Category Evaluation</h3>
+                <p><strong>Most Important Category:</strong> ${surveyState.categoryEvaluation.importantCategory}</p>
+                <p><strong>Least Important Category:</strong> ${surveyState.categoryEvaluation.unimportantCategory}</p>
+                <div id="categoryComparisonReview">${generateCategoryComparisonReview()}</div>
+            `;
+            return categoryDiv;
+        }
+
+        function generatecriteriaEvaluationReview() {
+            const criteriaDiv = document.createElement("div");
+            criteriaDiv.innerHTML = "<h3>criteria Evaluation</h3>";
+            Object.keys(surveyState.criteriaEvaluation).forEach(category => {
+                const catEval = surveyState.criteriaEvaluation[category];
+                criteriaDiv.innerHTML += `
+                    <h4>${category}</h4>
+                    <p><strong>Most Important Criterion:</strong> ${catEval.importantcriteria}</p>
+                    <p><strong>Least Important Criterion:</strong> ${catEval.unimportantcriteria}</p>
+                    <div id="criteriaComparisonReview_${category}">${generatecriteriaComparisonReview(catEval.comparisonScores, category)}</div>
+                `;
+            });
+            return criteriaDiv;
+        }
+
+        function generateCategoryComparisonReview() {
+            // Generate the comparison scores review for category evaluation
+            const comparisonScores = surveyState.categoryEvaluation.comparisonScores;
+            let comparisonHtml = "<h4>Comparison Scores:</h4><ul>";
+            comparisonScores.forEach(score => {
+                comparisonHtml += `<li>${score.element}: ${score.score}</li>`;
+            });
+            comparisonHtml += "</ul>";
+            return comparisonHtml;
+        }
+
+        function generatecriteriaComparisonReview(scores, category) {
+            // Generate the comparison scores review for criteria evaluation
+            let comparisonHtml = "<h4>Comparison Scores:</h4><ul>";
+            scores.forEach(score => {
+                comparisonHtml += `<li>${score.element}: ${score.score}</li>`;
+            });
+            comparisonHtml += "</ul>";
+            return comparisonHtml;
+        }
+
+        function downloadCSV() {
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "Category Evaluation\n";
+            csvContent += "Remaining Category,Most Important,Score\n";
+            collectedData.categories.forEach(categoryData => {
+                categoryData.comparisonMostImportant.forEach(comp => {
+                    csvContent += `${comp.element},${categoryData.important},${comp.score}\n`;
+                });
+                csvContent += "\nLeast Important,Remaining Category,Score\n";
+                categoryData.comparisonLeastImportant.forEach(comp => {
+                    csvContent += `${categoryData.unimportant},${comp.element},${comp.score}\n`;
+                });
+            });
+
+            csvContent += "\ncriteria Evaluation\n";
+            Object.keys(collectedData.criteria).forEach(category => {
+                csvContent += `Category: ${category}\n`;
+                csvContent += "Remaining criteria,Most Important,Score\n";
+                collectedData.criteria[category].forEach(criteriaData => {
+                    criteriaData.comparisonMostImportant.forEach(comp => {
+                        csvContent += `${comp.element},${criteriaData.important},${comp.score}\n`;
+                    });
+                    csvContent += "\nLeast Important,Remaining criteria,Score\n";
+                    criteriaData.comparisonLeastImportant.forEach(comp => {
+                        csvContent += `${criteriaData.unimportant},${comp.element},${comp.score}\n`;
+                    });
+                });
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "final_review.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        
+        function submitSurvey() {
+            const url = "https://script.google.com/macros/s/AKfycbzIon1unnU-N6W-YPoY1kGETvgaddhSx7elooX7jl6vqgkn7Lo1kIoScG5w6lUqsWca/exec"; // Replace with your Google Apps Script Web App URL
+            const data = collectData();
+            console.log("Submitting survey with data:", data);
+            
+            fetch(url, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(data => {
+                console.log("Success:", data);
+                window.alert("Thank you for submitting the survey!");
+            })
+        }
+
+        function collectData() {
+
+            let categoryContent = "data:text/csv;charset=utf-8,";
+            categoryContent += "Category Evaluation\n";
+            categoryContent += "Remaining Category,Most Important,Score\n";
+            collectedData.categories.forEach(categoryData => {
+                categoryData.comparisonMostImportant.forEach(comp => {
+                    categoryContent += `${comp.element},${categoryData.important},${comp.score}\n`;
+                });
+                categoryContent += "\nLeast Important,Remaining Category,Score\n";
+                categoryData.comparisonLeastImportant.forEach(comp => {
+                    categoryContent += `${categoryData.unimportant},${comp.element},${comp.score}\n`;
+                });
+            });
+
+           let criteriaContent = "data:text/csv;charset=utf-8,";
+            Object.keys(collectedData.criteria).forEach(category => {
+                criteriaContent += `Category: ${category}\n`;
+                criteriaContent += "Remaining criteria,Most Important,Score\n";
+                collectedData.criteria[category].forEach(criteriaData => {
+                    criteriaData.comparisonMostImportant.forEach(comp => {
+                        criteriaContent += `${comp.element},${criteriaData.important},${comp.score}\n`;
+                    });
+                    criteriaContent += "\nLeast Important,Remaining criteria,Score\n";
+                    criteriaData.comparisonLeastImportant.forEach(comp => {
+                        criteriaContent += `${criteriaData.unimportant},${comp.element},${comp.score}\n`;
+                    });
+                });
+            })
+
+            const data = {
+                name: document.getElementById("name").value,
+                position: document.getElementById("position").value,
+                team: document.getElementById("team").value,
+                categoryContent: categoryContent,
+                criteriaContent: criteriaContent,
+                comments: document.getElementById("comments").value,
+            };
+            console.log("Collected data:", data);
+            return data;
+        }
+    </script>
+</body>
+</html>
